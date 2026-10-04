@@ -766,12 +766,20 @@ def update_application_status(application_id):
 
 
 # =========================
-# RUN SERVER
+# INITIALIZE DATABASE
+# =========================
+
+# Important for Render/Gunicorn:
+# Gunicorn imports this file instead of running it
+# as the main Python program.
+init_db()
+
+
+# =========================
+# RUN SERVER LOCALLY
 # =========================
 
 if __name__ == "__main__":
-    init_db()
-
     import os
 
     port = int(os.environ.get("PORT", 5000))
