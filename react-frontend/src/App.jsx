@@ -5,8 +5,8 @@ import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import JobCard from "./components/JobCard";
 import JobDetails from "./components/JobDetails";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./components/login";
+import Register from "./components/register";
 import MyApplications from "./components/MyApplications";
 import RecruiterDashboard from "./components/RecruiterDashboard";
 
@@ -22,7 +22,7 @@ function Home() {
   const fetchJobs = async () => {
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/api/jobs"
+        "https://placement-portal-backend-y12s.onrender.com/api/jobs"
       );
 
       const data = await response.json();

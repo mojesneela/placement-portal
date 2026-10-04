@@ -12,6 +12,7 @@ function Register() {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,13 +21,16 @@ function Register() {
     });
   };
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+  const handleRegister = async () => {
+    console.log("REGISTER BUTTON CLICKED");
+    console.log("Form data:", formData);
+
     setError("");
+    setLoading(true);
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/api/register",
+        "https://placement-portal-backend-y12s.onrender.com/api/register",
         {
           method: "POST",
           headers: {
@@ -36,26 +40,34 @@ function Register() {
         }
       );
 
+      console.log("Response status:", response.status);
+
       const data = await response.json();
+
+      console.log("Response data:", data);
 
       if (!response.ok) {
         setError(data.error || "Registration failed");
+        setLoading(false);
         return;
       }
 
       alert("Registration successful!");
 
+      setLoading(false);
       navigate("/login");
 
     } catch (error) {
       console.error("Registration error:", error);
       setError("Unable to connect to the server");
+      setLoading(false);
     }
   };
 
   return (
     <main className="auth-page">
       <div className="auth-card">
+
         <h2>Create Account</h2>
 
         {error && (
@@ -64,7 +76,8 @@ function Register() {
           </p>
         )}
 
-        <form onSubmit={handleRegister}>
+        <form onSubmit={(e) => e.preventDefault()}>
+
           <input
             type="text"
             name="name"
@@ -106,9 +119,14 @@ function Register() {
             </option>
           </select>
 
-          <button type="submit">
-            Register
+          <button
+            type="button"
+            onClick={handleRegister}
+            disabled={loading}
+          >
+            {loading ? "Registering..." : "Register"}
           </button>
+
         </form>
 
         <p>
@@ -117,6 +135,7 @@ function Register() {
             Login
           </Link>
         </p>
+
       </div>
     </main>
   );

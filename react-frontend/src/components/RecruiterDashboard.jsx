@@ -27,8 +27,8 @@ function RecruiterDashboard() {
     try {
       const [jobsResponse, applicationsResponse] =
         await Promise.all([
-          fetch("http://127.0.0.1:5000/api/jobs"),
-          fetch("http://127.0.0.1:5000/api/applications")
+          fetch("https://placement-portal-backend-y12s.onrender.com/api/jobs"),
+          fetch("https://placement-portal-backend-y12s.onrender.com/api/applications")
         ]);
 
       const jobsData = await jobsResponse.json();
@@ -103,7 +103,7 @@ function RecruiterDashboard() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/jobs/${editingJob}`,
+        `https://placement-portal-backend-y12s.onrender.com/api/jobs/${editingJob}`,
         {
           method: "PUT",
           headers: {
@@ -142,7 +142,7 @@ function RecruiterDashboard() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/jobs/${jobId}`,
+        `https://placement-portal-backend-y12s.onrender.com/api/jobs/${jobId}`,
         {
           method: "DELETE"
         }
@@ -171,7 +171,7 @@ function RecruiterDashboard() {
   ) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/applications/${applicationId}`,
+        `https://placement-portal-backend-y12s.onrender.com/api/applications/${applicationId}`,
         {
           method: "PUT",
           headers: {
