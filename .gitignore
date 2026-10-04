@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+backend/venv/
+
+# Python database
+backend/placement.db
+
+# Node
+node_modules/
+**/node_modules/
+
+# Build files
+dist/
+**/dist/
+
+# Environment files
+.env
+.env.*
